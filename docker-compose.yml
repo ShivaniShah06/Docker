@@ -1,0 +1,11 @@
+# This file can be used to create definition of all the components of an application in a single file and it connects them together
+# by default through services
+services:
+  <app_name>:
+    image: <image_name>
+    ports:
+      - <host_port>:<container_port>
+  <app_name>:
+    image: <image_name>
+    ports:
+      - <host_port>:<container_port>
