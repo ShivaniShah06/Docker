@@ -2,7 +2,7 @@
 
        $docker run <image_name>
 
-  NOTE: If the image does not exist on the host, docker will go to docker hub and pull the image down.
+      NOTE: If the image does not exist on the host, docker will go to docker hub and pull the image down.
 
 2. List running containers and some basic information
 
@@ -36,8 +36,7 @@
 
 9. Append a command
 
-       $docker run <image_name> <command (eg: sleep 5)
-       >
+       $docker run <image_name> <command (eg: sleep 5)>
 
 10. Execute a command on a container
 
@@ -119,11 +118,11 @@
 
 26. Map the volume on docker host with volume on container for persistent data storage (data will not be lost even after the container has been terminated)
 
-VOLUME MOUNT: Mounts volume from a volume directory (`/var/lib/docker`)
+    `VOLUME MOUNT: Mounts volume from a volume directory (/var/lib/docker)`
 
          $docker run -v <newly_created_volume>:<location_on_docker_container> <image_name>
 
-OR
+     OR
 
          $docker run --mount type=<bind/volume/tmpfs>,source=<location_on_host>,targer=<location_on_container>
 
@@ -131,7 +130,7 @@ NOTE: This newly created volume will by default exist in `/var/lib/docker` locat
 
 27. If you have a folder with data in a different location, then mention the path to that folder in the command to mount it with the volume inside a container
 
-BIND MOUNT: Mounts a directory from any location on the docker host
+    `BIND MOUNT: Mounts a directory from any location on the docker host`
 
         $docker run -v <location_to_directory>:<location_on_docker_container> <image_name>
 
