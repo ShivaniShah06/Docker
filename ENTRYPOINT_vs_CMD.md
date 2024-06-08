@@ -4,6 +4,7 @@
 - ENTRYPOINT is what runs right after a container is created.
 - If we specify both ENTRYPOINT and Command in a dockerfile, they will get appended and become a single command that will run after container gets created
 - We can have a default command defined and can overwrite it while creating a container
+- ENTRYPOINT is something that cannot be overwritten whereas CMD can be overwritten
 
 ### Scenario 1:
 .
