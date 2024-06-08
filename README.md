@@ -39,6 +39,12 @@ Virtual Machines have solved some problems with physical servers and Containers 
 ### Difference between GitHub & Docker Hub?
   - GitHub is a version control system to store your source code whereas docker hub stores your docker images
 
+### Distroless Images:
+  - The base images like Ubuntu or python runtime that you use in the final stage of your multi stage image are exposed to some kind of vulnerabilties by hackers
+  - Distroless images are small in size and are more secure
+  - For eg: If you use Python distroless image, it would not even have commands like find, wget, ls or curl. It will only have python runtime so it provides highest level of security
+  - After implementing distroless images, we can say that our applications are not exposed to any OS related vulnerabilities
+
 ### References
 https://udemy.com/course/learn-docker
 https://github.com/iam-veeramalla/Docker-Zero-to-Hero
