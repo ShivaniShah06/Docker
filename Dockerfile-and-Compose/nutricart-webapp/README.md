@@ -63,9 +63,9 @@
 - Spin up the application container:
  
   ```shell
-  docker run --name <application_container_name> -p <host_port>:<container_port> --network <network_name> <application_image_name>
+  docker run --name <application_container_name> -e DATABASE_URL=<postgres_database_url> -p <host_port>:<container_port> --network <network_name> <application_image_name>
 
-  eg: docker run --name webapp -p 8000:8000 --network test shivanishah612/webapp:no-env-v1
+  eg: docker run --name webapp -e DATABASE_URL=postgresql://postgres:postgres@postgres/postgres  -p 8000:8000 --network test shivanishah612/webapp:no-env-v1
   ```
 
 ## RUN ENTIRE APPLICATION WITH DOCKER COMPOSE
