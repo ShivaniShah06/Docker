@@ -1,0 +1,15 @@
+# Non-optimized docker file - size is 277MB
+
+# Using lighter image of python base image
+FROM python:3.12-slim
+WORKDIR /webapp
+# Copy every file in current directory to the /webapp directory on the container
+COPY . .
+# Install dependencies for the application using pip
+RUN pip3 install -r requirements.txt
+# Add user so that app does not run with root user
+RUN useradd webapp
+USER webapp
+# Add commands to run the app
+CMD ["--host", "0.0.0.0"]
+ENTRYPOINT ["fastapi", "dev", "webapp.py"]

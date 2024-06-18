@@ -1,0 +1,6 @@
+# Ignore below files while copying entire directory in docker build
+.env
+integration_test.py
+compose.yml
+postgres_password.txt
+postgres_user.txt
