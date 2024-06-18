@@ -1,0 +1,46 @@
+# DOCKER COMPOSE FILE
+# References for fixing errors faced while building this:
+# https://stackoverflow.com/questions/60193781/postgres-with-docker-compose-gives-fatal-role-root-does-not-exist-error/76757417#76757417,
+# https://github.com/peter-evans/docker-compose-healthcheck/pull/17,
+# https://marcopeg.com/docker-compose-healthcheck/
+services:
+  postgres:
+    image: postgres:15.7
+    environment:
+       POSTGRES_USER_FILE: /run/secrets/postgres_user
+       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    secrets:
+      - postgres_user
+      - postgres_password
+    networks:
+      - web-db
+    healthcheck:
+      test: pg_isready -U `cat $$POSTGRES_USER_FILE`
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+  webapp:
+    depends_on:
+       postgres:
+         condition: service_healthy
+    # image: shivanishah612/webapp:v1 --> non-optimized image
+    # image: shivanishah612/webapp:optimized-v1
+    image: shivanishah612/webapp:no-env-v1
+    # will replace with the value in .env file
+    # https://docs.docker.com/compose/environment-variables/variable-interpolation/#additional-information
+    environment:
+       DATABASE_URL: ${DATABASE_URL}
+    ports:
+      - "8000:8000"
+    networks:
+      - web-db
+networks:
+  web-db:
+    external: false
+secrets:
+  postgres_user: 
+    file: ./postgres_user.txt
+  postgres_password:
+    file: ./postgres_password.txt
